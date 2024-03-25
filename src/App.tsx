@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import "./App.css";
 
 const ListaDeTarefas = (props: any) => {
@@ -40,6 +41,33 @@ const App = () => {
       concluido: false,
     },
   ]);
+  
+  // const escutarCliqueAcessarAPI =() =>{
+  //   console.log("clicou");
+  //   const dados_da_api = axios.get("https://jsonplaceholder.typicode.com/todos")
+  //     .then((resposta) => {
+  //       console.log(resposta);
+  //     });
+  // }
+
+  const escutarCliqueAcessarAPI =() =>{
+    console.log("clicou");
+    const dados_da_api = axios.get("https://jsonplaceholder.typicode.com/todos")
+      .then((resposta) => {
+        //resposta http
+        console.log(resposta);
+        //Converter http no formato de nossa lista
+        const dados = resposta.data.map((item) => {
+          return{
+            id: item.id,
+            titulo: item.title,
+            concluido: item.completed
+          };
+        });
+        console.log(dados);
+        setTarefas(dados);
+      });
+  }
 
   const escutarCliqueBotao = () => {
     console.log("clicou");
@@ -67,6 +95,9 @@ const App = () => {
         <label htmlFor="tarefa">Informe a nova tarefa: </label>
         <input type="text" id="tarefa" value={tarefa} onChange={escutarModificacaoTexto} />
         <button onClick={escutarCliqueBotao}>Criar nova tarefa</button>
+      </div>
+      <div>
+        <button onClick={escutarCliqueAcessarAPI}>Teste API</button>
       </div>
       <ListaDeTarefas dados={tarefas}/>
     </div>
