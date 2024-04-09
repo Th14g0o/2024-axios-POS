@@ -53,11 +53,11 @@ const App = () => {
   const escutarCliqueAcessarAPI =() =>{
     console.log("clicou");
     const dados_da_api = axios.get("https://jsonplaceholder.typicode.com/todos")
-      .then((resposta) => {
+      .then((resposta: any) => {
         //resposta http
         console.log(resposta);
         //Converter http no formato de nossa lista
-        const dados = resposta.data.map((item) => {
+        const dados = resposta.data.map((item: any) => {
           return{
             id: item.id,
             titulo: item.title,
