@@ -68,6 +68,7 @@ const App = () => {
         setTarefas(dados);
       });
   }
+  console.log(escutarCliqueAcessarAPI);
 
   const escutarCliqueBotao = () => {
     console.log("clicou");
