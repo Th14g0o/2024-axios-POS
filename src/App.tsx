@@ -50,7 +50,7 @@ const App = () => {
   //     });
   // }
 
-  const escutarCliqueAcessarAPI =() =>{
+  const escutarCliqueAcessarAPI = () =>{
     console.log("clicou");
     const dados_da_api = axios.get("https://jsonplaceholder.typicode.com/todos")
       .then((resposta: any) => {
